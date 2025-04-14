@@ -1,9 +1,16 @@
 import { EditorMemento } from "./Memento";
+import { Historial } from "./Historial";
 
 export class Editor {
     private contenido: string = "";
+    private historial: Historial;
 
-    escribir (texto: string) {
+    constructor(historial: Historial) {
+        this.historial = historial;
+    }
+
+    escribir (texto: string): void {
+        this.historial.guardar(this.guardar());
         this.contenido += texto;
     }
 
